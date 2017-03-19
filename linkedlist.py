@@ -74,7 +74,7 @@ class LinkedList(object):
         self.head = prev_node
 
     def reverse_in_place_recursive(self):
-        """Reverses the list in place
+        """Reverses the list in place using recursion
 
         >>> ll = LinkedList(Node('A', Node('B', Node('C'))))
         >>> ll.reverse_in_place_recursive()
@@ -88,6 +88,8 @@ class LinkedList(object):
 
         def _reverse_rec(current, prev):
 
+            # When we reach the end of the list (current = None), 
+            # we want to return the previous node as the head of the reversed list
             if not current:
                 return prev
 
@@ -103,17 +105,8 @@ class LinkedList(object):
 
     @staticmethod
     def reverse_not_in_place(ll):
-        """Reverses the list in place
+        """Returns a new linked list object in reversed order
 
-        Test case 1: Single Node
-        >>> ll = LinkedList(Node('A'))
-        >>> ll_reversed = LinkedList.reverse_not_in_place(ll)
-        >>> ll_reversed.as_string()
-        A
-        >>> ll.as_string()
-        A
-
-        Test case 2: Longer linked list
         >>> ll = LinkedList(Node('A', Node('B', Node('C'))))
         >>> ll_reversed = LinkedList.reverse_not_in_place(ll)
         >>> ll_reversed.as_string()
