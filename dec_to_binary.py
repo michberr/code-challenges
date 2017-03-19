@@ -15,27 +15,28 @@ def dec_to_binary(num):
 
     Runtime of this solution is log2(n),
     because as num doubles in size, we only have to do
-    on more iteration of each while loop
+    one more iteration of each while loop
 
     """
 
     exponent = 0
 
-    # Find 2^n, where n is the max exponent where 2^n < num
     while True:
+
+        # Find max n such that 2^n < num
         if 2**(exponent+1) > num:
             break
 
         exponent += 1
 
-    # store num converted to binary
     binary_num = ""
 
-    # Cycle back through powers of 2 in reverse.
-    # For each power of 2, add a '1' to the
-    # binary_num if it can be subtracted from num
-    # and '0' if not
     while exponent >= 0:
+
+        # Cycle back through powers of 2 in reverse.
+        # For each power of 2, add a '1' to the
+        # binary_num if it can be subtracted from num
+        # and '0' if not
         if num >= 2**exponent:
             num -= 2**exponent
             exponent -= 1
@@ -63,17 +64,18 @@ def dec_to_binary2(num):
     '10011100'
 
     Instead of first creating powers of 2, this solution
-    divides the num successively by 2 and uses the remainders 
+    divides the num successively by 2 and uses the remainders
     to form the binary representation.
 
     Runtime of this solution is also log2(n),
     because as num doubles in size, we only have to do
-    on more iteration of the while loop. It is however, faster
+    one more iteration of the while loop. It is however, faster
     than the first solution, because there is one less loop.
 
     """
 
     if num < 2:
+        # Win quickly, return the num if it's less than 2
         return str(num)
 
     else:
@@ -82,7 +84,7 @@ def dec_to_binary2(num):
 
         while num > 0:
 
-            # Calculate the remainder and add to string
+            # Calculate the remainder of %2 and add to string
             binary_num = str(num % 2) + binary_num
 
             # Store the quotient as the new num
@@ -106,9 +108,7 @@ def dec_to_binary_recursively(num):
     >>> dec_to_binary_recursively(156)
     '10011100'
 
-    This solution also has runtime log2(n) and is the same
-    speed as dec_to_binary2
-
+    This solution also has runtime log2(n)
     """
 
     if num < 2:
