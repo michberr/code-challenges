@@ -45,7 +45,7 @@ class Node:
             if not node:
                 return True
 
-            if node.data < min or node.data > max:
+            if node.data <= min or node.data >= max:
                 return False
 
             return (_recr(node.left, min, node.data) and
