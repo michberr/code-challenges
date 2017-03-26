@@ -31,13 +31,15 @@ def find_largest_smaller_than(nums, xnumber):
         return None
 
     while len(nums) > 1:
+
+        # Bisect the list
         mid = len(nums)/2
         if nums[mid] > xnumber:
             nums = nums[:mid]
         elif nums[mid] < xnumber:
             nums = nums[mid:]
 
-        # nums[mid] == xnumber
+        # Case when nums[mid] == xnumber
         else:
             return nums[mid-1]
 
