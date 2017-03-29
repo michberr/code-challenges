@@ -37,7 +37,7 @@ class Node:
 
         """
 
-        def _recr(node, min, max):
+        def _isvalid(node, min, max):
             """Recursive helper function"""
 
             # base case
@@ -45,13 +45,16 @@ class Node:
             if not node:
                 return True
 
-            if node.data <= min or node.data >= max:
+            if min and node.data < min:
                 return False
 
-            return (_recr(node.left, min, node.data) and
-                    _recr(node.right, node.data, max))
+            if max and node.data > max:
+                return False
 
-        return _recr(self, -10000, 10000)
+            return (_isvalid(node.left, min, node.data) and
+                    _isvalid(node.right, node.data, max))
+
+        return _isvalid(self, min=None, max=None)
 
 
 ##################################################
