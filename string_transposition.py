@@ -28,14 +28,15 @@ def is_string_transposed(s1, s2):
 
             try:
                 # Check for swap
-                if s1[i] == s2[i+1] and s1[i+1] == s2[i]:
-                    n_swaps += 1
-                    i += 2
-                else:
-                    return False
-
+                swap = s1[i] == s2[i+1] and s1[i+1] == s2[i]
             except IndexError:
                 # Will throw an index error if at end of string
+                return False
+
+            if swap:
+                n_swaps += 1
+                i += 2
+            else:
                 return False
 
             # Only allow one swap in string
