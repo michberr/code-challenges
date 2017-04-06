@@ -30,20 +30,27 @@ def find_largest_smaller_than(nums, xnumber):
     if nums[0] > xnumber:
         return None
 
-    while len(nums) > 1:
+    # Minimum and maximum indices
+    min = 0
+    max = len(nums) - 1
+
+    while max - min > 0:
 
         # Bisect the list
-        mid = len(nums)/2
+        # We add one to bisect on the right side if list has an even length
+        # For example a list of length 4 would get cut at index 2 instead of 1
+        mid = ((max - min) + 1)/2 + min
+
         if nums[mid] > xnumber:
-            nums = nums[:mid]
+            max = mid - 1
         elif nums[mid] < xnumber:
-            nums = nums[mid:]
+            min = mid
 
         # Case when nums[mid] == xnumber
         else:
             return nums[mid-1]
 
-    return nums[0]
+    return nums[min]
 
 if __name__ == '__main__':
     import doctest
