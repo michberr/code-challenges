@@ -54,6 +54,25 @@ def split(astring, splitter):
     return split_string
 
 
+def split2(string, splitter):
+    """Splits a string with a one character splitter"""
+
+    # Split starts at index 0
+    prev_split_idx = 0
+    split_string = []
+
+    for i in range(len(string)):
+        if string[i] == splitter:
+            split_string.append(string[prev_split_idx:i])
+            prev_split_idx = i+1
+
+    # Add the last split
+    split_string.append(string[prev_split_idx:])
+
+    return split_string
+
+
+
 if __name__ == '__main__':
     import doctest
     if doctest.testmod().failed == 0:
