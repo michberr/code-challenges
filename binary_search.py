@@ -56,18 +56,20 @@ def binary_search_recursive(val):
 
     assert 0 < val < 101, "Val must be between 1-100"
 
-    def _bsr(guess, val, lower, upper, num_guesses):
+    def _bsr(guess, val, lower, upper):
+
         if guess == val:
-            return num_guesses
+            return 1
 
         if val > guess:
             lower = guess
         else:
             upper = guess
 
-        return _bsr((upper - lower)/2 + lower, val, lower, upper, num_guesses + 1)
+        return 1 + _bsr((upper - lower)/2 + lower, val, lower, upper)
 
-    return _bsr(50, val, 1, 100, 1)
+    return _bsr(50, val, 1, 100)
+
 
 
 ##################################################
