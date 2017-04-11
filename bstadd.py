@@ -89,8 +89,8 @@ class Node:
     def insert(self, new_data):
         """Insert new node with `new_data` to BST tree rooted here."""
 
-        if not self:
-            return Node(new_data)
+        if self.data = None:
+            self.data = new_data
 
         if new_data < self.data:
             if self.left:
@@ -106,8 +106,9 @@ class Node:
     def insert_iter(self, new_data):
         """Insert new node with `new_data` to BST tree rooted here."""
 
-        if not self:
-            return Node(new_data)
+        if self.data = None:
+            self.data = new_data
+            return
 
         current = self
 
