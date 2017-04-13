@@ -57,6 +57,10 @@ def continental_divide(matrix):
 def can_reach_pacific(coordinate, matrix, length, seen=set()):
     """Return boolean for whether a node can reach the Pacific"""
 
+    # Try to retrieve coordinate from cache
+    if coordinate in p_cache:
+        return p_cache[coordinate]
+
     # Winning case, stop recursing
     if is_on_pacific(coordinate):
         return True
@@ -70,10 +74,12 @@ def can_reach_pacific(coordinate, matrix, length, seen=set()):
     for neighbor in flow_neighbors - seen:
 
         if can_reach_pacific(neighbor, matrix, length, seen):
+            p_cache[neighbor] = True
             return True
 
     # If we have recursed through all neighbors and not reached the pacific,
     # return False
+    p_cache[coordinate] = False
     return False
 
 
